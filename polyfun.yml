@@ -16,7 +16,8 @@ dependencies:
   - r
   - r-matrixstats
   - networkx
-  - rpy2<3.5.7
+#  - rpy2<3.5.7
+  - rpy2
   - scipy
   - r-devtools
   - numpy>=1.20

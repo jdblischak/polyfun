@@ -865,7 +865,7 @@ class SUSIE_Wrapper(Fine_Mapping):
             raise NotImplementedError('Only susie_suff_stat() and susie_bhat() are supported. Check your version of susieR')
         susie_time = time.time()-t0        
         logging.info('Done in %0.2f seconds'%(susie_time))
-        
+
         #extract pip and beta_mean
         pip = np.array(self.susieR.susie_get_pip(susie_obj))
         beta_mean = np.array(self.susieR.coef_susie(susie_obj)[1:])
@@ -894,7 +894,8 @@ class SUSIE_Wrapper(Fine_Mapping):
         df_susie['DISTANCE_FROM_CENTER'] = np.abs(df_susie['BP'] - middle)        
         
         #mark causal sets
-        self.susie_dict = {key:np.array(susie_obj.rx2(key), dtype=object) for key in list(susie_obj.names)}
+        snames = (susie_obj.names).tolist()
+        self.susie_dict = {key: np.array(susie_obj.rx2(key), dtype=object) for key in snames}
         df_susie['CREDIBLE_SET'] = 0
         susie_sets = self.susie_dict['sets'][0]
         #if type(susie_sets) != self.RNULLType:
